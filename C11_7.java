@@ -2,7 +2,19 @@ import java.io.*;
 import java.util.*;
 
 public class C11_7{
+public static ArrayList<HtWt> longestIncreasingSubSeq(ArrayList<HtWt> items){
+   return null;
 
+}
+
+
+public static void printList(ArrayList<HtWt> items){
+
+    for(HtWt temp: items){
+    System.out.print(temp.toString()+" ");  
+   }
+    System.out.println();
+}
 
    public static void main(String args[]){
    
@@ -33,16 +45,15 @@ public class C11_7{
                
                 item = new HtWt(45, 63);
                 items.add(item);
-    for(HtWt temp: items){
-    System.out.print(temp.toString()+" ");  
-   }
-    System.out.println();
-
-   QuickSort(items);
+   printList(items);
+   Collections.sort(items);
+   printList(items);
+   ArrayList<HtWt> solution= longestIncreasingSubSeq(items);
+   printList(solution);  
  }
 }
 
-class HtWt
+class HtWt implements Comparable
 {
    public HtWt(int height,int weight){
    this.weight=weight;
@@ -51,6 +62,15 @@ class HtWt
   public String toString(){
       String temp="( "+this.weight+","+this.height+" )";
       return temp;
+  }
+  public int compareTo(Object s){
+      HtWt second =(HtWt)s;
+      if(this.height!=second.height){
+          return ((Integer)this.height).compareTo(second.height);
+         }else {
+          return ((Integer)this.weight).compareTo(second.weight);
+       }
+   
   }
    public int height;
    public int weight;
