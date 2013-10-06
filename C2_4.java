@@ -11,8 +11,12 @@ public class C2_4 {
    LinkedListNode biggerStart=null;
    LinkedListNode biggerCursor=null;
    LinkedListNode current=head;
-  
+   LinkedListNode next=null;
+
    while(current !=null){
+        next=current.next;
+      //  current.next=null;
+
         if(current.data>pivot){
             if(biggerStart==null) {
                biggerStart=current;
@@ -34,9 +38,12 @@ public class C2_4 {
              }
  
         }
-         current=current.next;
+        current=next;
+       
    }
-
+   if(smallerStart==null)
+          head=biggerStart;
+   
    smallerCursor.next=biggerStart;
    head= smallerStart;
 } 
