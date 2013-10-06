@@ -15,7 +15,7 @@ public class C2_4 {
 
    while(current !=null){
         next=current.next;
-      //  current.next=null;
+        current.next=null;
 
         if(current.data>pivot){
             if(biggerStart==null) {
