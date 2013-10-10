@@ -2,10 +2,50 @@ import java.io.*;
 import java.util.*;
 import CrackingCodeLibrary.*;
 
-
 public class C2_4 {
-   public static void Partition(LinkedListNode head,int pivot){
+   public static LinkedListNode Partition2(LinkedListNode head, int pivot)
+{
+   
+   LinkedListNode smallerCursor=null;
+   LinkedListNode biggerCursor=null;
+   LinkedListNode current=head;
+   LinkedListNode temp=null;
   
+   while(current!=null) {   
+   temp=current.next;
+   current.next=null;
+
+   if(current.data<pivot)
+    {// insert before
+       current.next=smallerCursor;
+       smallerCursor=current;
+
+    }else
+   {
+      current.next=biggerCursor;
+      biggerCursor=current;
+   }
+    current=temp;
+ }
+
+  if(smallerCursor==null)
+        return biggerCursor;
+   else
+   {
+     head=smallerCursor;
+     while(smallerCursor.next!=null) {
+
+     smallerCursor=smallerCursor.next;
+    }
+     smallerCursor.next=biggerCursor;
+    return head; 
+  }
+
+  
+ 
+}
+   public static LinkedListNode  Partition(LinkedListNode head,int pivot){
+ /** insert after each node**/ 
    LinkedListNode smallerStart=null;
    LinkedListNode smallerCursor=null;
    LinkedListNode biggerStart=null;
@@ -20,7 +60,7 @@ public class C2_4 {
         if(current.data>pivot){
             if(biggerStart==null) {
                biggerStart=current;
-               biggerCursor=current;
+               biggerCursor=biggerStart;
              }
             else
              {
@@ -31,7 +71,7 @@ public class C2_4 {
         else {
              if(smallerStart==null) {
                 smallerStart=current;
-                smallerCursor=current;
+                smallerCursor=smallerStart;
              } else {
                 smallerCursor.next=current;
                 smallerCursor=current;
@@ -42,16 +82,23 @@ public class C2_4 {
        
    }
    if(smallerStart==null)
-          head=biggerStart;
+          return biggerStart;
    
    smallerCursor.next=biggerStart;
-   head= smallerStart;
+   return smallerStart;
 } 
 
-   public static void main(String args[]) { 
+
+public static void main(String args[]) { 
    LinkedListNode head=Generator.randomLinkedList(10,0,10);
    System.out.println(head.printForward());
-   Partition(head, 5); 
+   head=Partition2(head, 5); 
    System.out.println(head.printForward());
+
+
+//   head=Generator.randomLinkedList(10,0,10);
+//   System.out.println(head.printForward());
+//   Partition2(head, 5); 
+//   System.out.println(head.printForward());
 }
 }
