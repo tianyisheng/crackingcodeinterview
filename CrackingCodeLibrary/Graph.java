@@ -1,4 +1,4 @@
-package CrackingCodeLibrary.*;
+package CrackingCodeLibrary;
 public class Graph {
         private GraphNode vertices[];
         public int count;

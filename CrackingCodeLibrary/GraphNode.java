@@ -1,8 +1,10 @@
 package CrackingCodeLibrary;
 public class GraphNode {
+    public static enum State{ Visiting, Visited, Unvisited;}
     private GraphNode adjacent[];
     public int adjacentCount;
     private String vertex;
+    public State state;
     public GraphNode(String vertex, int adjacentLength) {
         this.vertex = vertex;                
         adjacentCount = 0;        
