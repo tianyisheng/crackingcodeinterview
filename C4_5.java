@@ -41,6 +41,7 @@ if(root.data>=max||root.data<min)
 
 return true;
 }
+
 public static TreeNode  createMinimalBST(int array[],int left, int right)
 {
    int middle= (left+right)/2;
